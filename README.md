@@ -2,13 +2,19 @@
 # mabeData2stdPhylogeny.py 
 
 Converts mabe data files to standard phylogeny format.
-Output generates lineage.json and lineage.csv
+mabeData2stdPhylogeny.py creates lineage.json and lineage.csv
 
+User must provide: 
+  mabe file format for files to convert: either snapshot or SSwD (snapshot with delay)
+  updateRange of files to convert, in format FIRST LAST STEP. i.e. from update 0 to 100 every 10
+  
+  other parameters are optional... see usage.
+  
 ## Usage
 
 ```
 usage: mabeData2stdPhylogeny.py [-h] [-path PATH] [-fileType TYPE]
-                                [-columnNames COLUMN_NAME [COLUMN_NAME ...]]
+                                [-oldColumnNames COLUMN_NAME [COLUMN_NAME ...]]
                                 [-newColumnNames COLUMN_NAME [COLUMN_NAME ...]]
                                 -updateRange FIRST LAST STEP [-verbose]
 
@@ -20,14 +26,16 @@ optional arguments:
                         current directory)
   -fileType TYPE        type of file, either snapshot or SSwD, default :
                         snapshot
-  -columnNames COLUMN_NAME [COLUMN_NAME ...]
+  -oldColumnNames COLUMN_NAME [COLUMN_NAME ...]
                         column names of data to read from source files -
-                        default : "score_AVE" ("ID", "timeOfBirth", and
-                        "ancestors" are added to the list automatically)
+                        default : "score_AVE" ("ID", "timeOfBirth", and the
+                        correct ancestors list are added to the list
+                        automatically)
   -newColumnNames COLUMN_NAME [COLUMN_NAME ...]
                         column names of data to be copied into new data file -
-                        default : "score" ("id", "origin_time", and "parents"
-                        are added to the list automatically)
+                        default : NONE, if blank, copy oldColumnNames ("id",
+                        "origin_time", and "parents" are added to the list
+                        automatically)
   -updateRange FIRST LAST STEP
                         update range of files to convert (from first to last
                         on step)
