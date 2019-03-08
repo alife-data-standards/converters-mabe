@@ -58,7 +58,6 @@ def ConvertMABESnapshotsToStdPhylogeny(mabe_output_path, mabe_output_type="snaps
                 if firstLineInFile: # first line of file, do not recored to raw data
                     firstLineInFile = False
                     if mustGetHeader: # first line, of first file; keep it as header
-                        origColumnNames = line
                         mustGetHeader = False
                         header = line
                         header_lu = {value:index for index, value in enumerate(line)}
@@ -97,7 +96,6 @@ def ConvertMABESnapshotsToStdPhylogeny(mabe_output_path, mabe_output_type="snaps
                 dataOnThisLine[new_col_name] = rawData[orgID][col_index]
         outData[orgID] = dataOnThisLine
 
-    csv_file = "lineage.csv"
     new_header = [name_map[h] if h in name_map else h for h in header if h in ofInterest]
 
     if std_output_type == "csv":
