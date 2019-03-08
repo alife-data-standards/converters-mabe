@@ -4,6 +4,11 @@ python: 3.7
 
 install:
   - pip install -r requirements.txt
+  - pip install coverage
+  - pip install pytest-cov
+  - pip install codacy-coverage
 
 script:
-  - pytest
+  - pytest --cov="mabeData2stdPhylogeny"
+  - coverate xml
+  - python-codacy-coverage -r coverage.xml
