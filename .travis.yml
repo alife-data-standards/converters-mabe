@@ -10,6 +10,6 @@ install:
   - pip install -e .
 
 script:
-  - pytest --cov=mabeData2stdPhylogeny
+  - pytest --cov=mabe_converters
   - coverate xml
   - python-codacy-coverage -r coverage.xml
