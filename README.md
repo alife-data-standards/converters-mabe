@@ -1,16 +1,15 @@
-
-# mabeData2stdPhylogeny.py 
+# Data conversion tools for the Modular Agent Based Evolver (MABE)
 
 Converts mabe data files to standard phylogeny format.
 mabeData2stdPhylogeny.py creates lineage.json and lineage.csv
 
-User must provide: 
+User must provide:
 <ul>
   <li>mabe file format for files to convert: either snapshot or SSwD (snapshot with delay)</li>
   <li>updateRange of files to convert, in format FIRST LAST STEP. i.e. from update 0 to 100 every 10</li>
   <li>other parameters are optional... see usage.</li>
 </ul>
-    
+
 ## Usage
 
 ```
