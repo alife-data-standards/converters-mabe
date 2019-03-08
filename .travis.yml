@@ -11,5 +11,5 @@ install:
 
 script:
   - pytest --cov=mabe_converters
-  - coverate xml
+  - coverage xml
   - python-codacy-coverage -r coverage.xml
