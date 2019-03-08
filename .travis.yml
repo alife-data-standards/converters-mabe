@@ -9,6 +9,6 @@ install:
   - pip install codacy-coverage
 
 script:
-  - pytest --cov="mabeData2stdPhylogeny"
+  - pytest --cov=mabeData2stdPhylogeny
   - coverate xml
   - python-codacy-coverage -r coverage.xml
