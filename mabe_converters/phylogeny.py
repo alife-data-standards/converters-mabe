@@ -39,11 +39,9 @@ def ConvertMABESnapshotsToStdPhylogeny(mabe_output_path, mabe_output_type="snaps
 
     # -- bookmark --
     # Get a list of files
-    print(os.listdir(mabe_output_path))
-    print(mabe_output_type)
     files = [f for f in os.listdir(mabe_output_path) if ".csv" in f and mabe_output_type+"_data_" in f]
     files = sorted(files, key=lambda f: int(f.split(".")[0].split("_")[-1])) # Sort into correct order.
-    
+
     rawData = {}
     header = []
     header_lu = {}
