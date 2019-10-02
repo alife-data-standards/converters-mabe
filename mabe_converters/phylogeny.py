@@ -4,16 +4,16 @@ import os
 import argparse
 
 VALID_STD_OUTPUT_TYPES=["csv", "json"]
-VALID_MABE_OUTPUT_TYPES=["snapshot", "sswd"]
+VALID_MABE_OUTPUT_TYPES=["snapshot", "SSwD"]
 MABE_ANCESTOR_LIST_COLUMN_NAME = {
-    "sswd": "ancestors_LIST",
+    "SSwD": "ancestors_LIST",
     "snapshot": "snapshotAncestors_LIST"
 }
 
 def ConvertMABESnapshotsToStdPhylogeny(mabe_output_path, mabe_output_type="snapshot", std_output_file_path="lineage.csv", std_output_type="csv", column_name_transforms={}, columns_of_interest=None, verbose=False):
     """
     """
-    mabe_output_type = mabe_output_type.lower()
+    #mabe_output_type = mabe_output_type.lower()
     std_output_type = std_output_type.lower()
 
     # Validate arguments
@@ -39,9 +39,11 @@ def ConvertMABESnapshotsToStdPhylogeny(mabe_output_path, mabe_output_type="snaps
 
     # -- bookmark --
     # Get a list of files
-    files = [f for f in os.listdir(mabe_output_path) if ".csv" in f and "_data_" in f]
+    print(os.listdir(mabe_output_path))
+    print(mabe_output_type)
+    files = [f for f in os.listdir(mabe_output_path) if ".csv" in f and mabe_output_type+"_data_" in f]
     files = sorted(files, key=lambda f: int(f.split(".")[0].split("_")[-1])) # Sort into correct order.
-
+    
     rawData = {}
     header = []
     header_lu = {}
@@ -122,6 +124,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+
     # Process old column names and new column names
     cols_of_interest = args.oldColumnNames
     col_new_names = args.newColumnNames
@@ -131,4 +134,4 @@ if __name__ == "__main__":
             raise Exception("To remap oldColumnNames, you must provide remapping for all columns with newColumnNames")
         col_name_map = {value:col_new_names[index] for index, value in enumerate(cols_of_interest)}
         print(f"REMAPPING: {col_name_map}")
-    ConvertMABESnapshotsToStdPhylogeny(mabe_output_path=args.path, mabe_output_type=args.fileType, std_output_type=args.format, std_output_file_path=args.output_file_path, columns_of_interest=cols_of_interest, column_name_transforms=col_name_map)
+    ConvertMABESnapshotsToStdPhylogeny(mabe_output_path=args.path, mabe_output_type=args.fileType, std_output_type=args.format, std_output_file_path=args.output_file_path, columns_of_interest=cols_of_interest, column_name_transforms=col_name_map,verbose=args.verbose)
